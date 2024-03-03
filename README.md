@@ -10,6 +10,7 @@ The WASM package includes a [Feedforward Neural Network for motion detection tra
 - O: if you draw an O in the air anticlockwise
 
 For more information, check out
+- [https://docs.edgeimpulse.com/docs/tutorials/end-to-end-tutorials/continuous-motion-recognition](https://docs.edgeimpulse.com/docs/tutorials/end-to-end-tutorials/continuous-motion-recognition)
 - [https://docs.edgeimpulse.com/docs/pre-built-datasets/continuous-gestures](https://docs.edgeimpulse.com/docs/pre-built-datasets/continuous-gestures)
 
 # Bacchetta magica per iOS
@@ -24,4 +25,5 @@ Il pacchetto WASM include una [Feedforward Neural Network per riconoscere movime
 - O: se si disegna una O nell'aria in senso antiorario.
 
 Per ulteriori informazioni, consultate
+- [https://docs.edgeimpulse.com/docs/tutorials/end-to-end-tutorials/continuous-motion-recognition](https://docs.edgeimpulse.com/docs/tutorials/end-to-end-tutorials/continuous-motion-recognition)
 - [https://docs.edgeimpulse.com/docs/pre-built-datasets/continuous-gestures](https://docs.edgeimpulse.com/docs/pre-built-datasets/continuous-gestures)
