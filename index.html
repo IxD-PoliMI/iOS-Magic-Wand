@@ -4,6 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Accelerometer Demo</title>
+  <style>
+    #results {
+      font-family: monospace;
+      white-space: pre;
+    }
+  </style>
   <script>
     function getAccel() {
       DeviceMotionEvent.requestPermission().then(response => {
