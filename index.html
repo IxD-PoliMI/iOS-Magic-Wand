@@ -22,6 +22,7 @@
             document.getElementById('x').value = event.accelerationIncludingGravity.x;
             document.getElementById('y').value = event.accelerationIncludingGravity.y;
             document.getElementById('z').value = event.accelerationIncludingGravity.z;
+            updateSensorReadingsString(event.accelerationIncludingGravity.x, event.accelerationIncludingGravity.y, event.accelerationIncludingGravity.z)
           });
 
           // Add a listener to get smartphone orientation
@@ -33,6 +34,52 @@
           });
         }
       });
+    }
+
+    let sensorReadingsString = ""; // Global string to hold the concatenated sensor values
+    const maxTriplets = 125; // Maximum number of triplets to retain
+
+    function updateSensorReadingsString(newSensor1, newSensor2, newSensor3) {
+      // Convert the new readings into a comma-separated string
+      const newReadingsString = `${newSensor1},${newSensor2},${newSensor3}`;
+
+      // Check if the global string is empty; if so, initialize it with the new readings
+      if (sensorReadingsString === "") {
+        sensorReadingsString = newReadingsString;
+      } else {
+        // If not empty, append the new readings string with a leading comma
+        sensorReadingsString += "," + newReadingsString;
+      }
+
+      // Split the global string into an array to manage individual values
+      let readingsArray = sensorReadingsString.split(',');
+
+      // Check if the readings array exceeds the maximum number of values allowed (125 triplets * 3 values each = 375)
+      // If it does, remove the oldest values to maintain the size limit
+      while (readingsArray.length > maxTriplets * 3) {
+        // Remove the first three values (the oldest triplet) from the array
+        readingsArray.shift(); // Removes the first element
+        readingsArray.shift(); // Removes the now first element, originally the second
+        readingsArray.shift(); // Removes the now first element, originally the third
+      }
+
+      // Re-join the array into a string and update the global variable
+      sensorReadingsString = readingsArray.join(',');
+    }
+
+    // Function to update field4 if the string has 375 elements
+    function grf() {
+      // Split the string by commas to get an array of elements
+      const elements = sensorReadingsString.split(',');
+
+      // Check if there are 375 elements
+      if (elements.length === 375) {
+        // Update field4 with the sensorReadingsString
+        document.getElementById('generate-raw-features').value = sensorReadingsString;
+      } else {
+        // Optionally, handle the case where there are not 375 elements
+        console.log("The string does not have 375 elements.");
+      }
     }
   </script>
 </head>
@@ -62,6 +109,8 @@
 
   <label for="field3">accelleration z:</label>
   <input type="text" id="z" name="z"><br><br>
+
+  <button id="generate-raw-features" onclick="grf()">generate raw features</button>
 
   <p>
     <input type="text" id="features" placeholder="Paste your features here">
